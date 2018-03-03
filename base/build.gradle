@@ -1,0 +1,103 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        maven { url "${repo_path}" }
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.9.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'war'
+
+jar{
+    exclude('**/keystore.p12')
+    exclude('**/logback-spring.xml')
+}
+
+task deploy(type: Copy, dependsOn: clean) {
+    from war
+    into "${tomcat_home}/webapps"
+}
+
+repositories {
+  //  jcenter()
+    mavenLocal()
+    maven { url "${repo_path}" }
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile fileTree(dir:'libs/pubzone',include:"*.jar")
+    compile fileTree(dir:'libs/',include:"*.jar")
+
+    compile("org.springframework.boot:spring-boot-starter-web")
+
+    compile("org.springframework.boot:spring-boot-starter")
+
+    // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
+    compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // Use MySQL Connector-J
+    compile 'mysql:mysql-connector-java'
+
+    compile 'org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.0'
+    compile 'org.springframework.boot:spring-boot-starter-aop'
+
+    compile 'org.hibernate:hibernate-validator'
+    //compile 'commons-dbcp:commons-dbcp'
+    compile 'javax.servlet:javax.servlet-api'
+
+    compile 'io.springfox:springfox-swagger2:2.7.0'
+    compile 'io.springfox:springfox-swagger-ui:2.7.0'
+    compile 'org.apache.commons:commons-lang3:3.6'
+
+    compile 'com.github.jnr:jnr-posix:3.0.33'
+    compile 'com.github.jnr:jnr-enxio:0.16'
+    compile 'com.github.jnr:jnr-ffi:2.1.2'
+    compile 'com.github.jnr:jnr-constants:0.9.6'
+    compile 'com.github.jnr:jnr-x86asm:1.0.2'
+    compile 'com.github.jnr:jnr-unixsocket:0.15'
+
+    compile 'com.github.jnr:jffi:1.2.14'
+
+    compile 'commons-logging:commons-logging:1.2'
+    compile 'commons-codec:commons-codec:1.9'
+    compile 'commons-io:commons-io:2.5'
+
+    compile 'org.ow2.asm:asm-tree:5.0.3'
+    compile 'org.ow2.asm:asm-commons:5.0.3'
+    compile 'org.ow2.asm:asm:5.0.3'
+    compile 'org.ow2.asm:asm-analysis:5.0.3'
+    compile 'org.ow2.asm:asm-util:5.0.3'
+
+    compile 'com.fasterxml.jackson.core:jackson-annotations:2.8.0'
+
+    compileOnly 'org.projectlombok:lombok:1.16.18'
+
+    compile 'com.alibaba:fastjson:1.2.24'
+    compile 'com.lambdaworks:scrypt:1.4.0'
+    compile 'com.squareup:javapoet:1.7.0'
+
+    compile 'org.apache.httpcomponents:httpclient:4.5.2'
+    compile 'org.apache.httpcomponents:httpcore:4.4.4'
+    compile 'org.apache.httpcomponents:httpmime:4.3.1'
+
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.11'
+    compile group: 'com.itextpdf', name: 'itext-asian', version: '5.2.0'
+    compile 'redis.clients:jedis:2.9.0'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+
+    providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
+
