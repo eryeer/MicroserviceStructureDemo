@@ -1,6 +1,11 @@
 spring:
   application:
     name: microservice-account #指定服务名
+  rabbitmq:
+      host: 192.168.192.128
+      port: 6672
+      username: guest
+      password: guest
   datasource:
     url: jdbc:mysql://192.168.192.128:13306/account?characterEncoding=utf-8
     username: root

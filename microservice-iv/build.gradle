@@ -42,6 +42,7 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
     compile 'org.springframework.cloud:spring-cloud-starter-feign'
 
+    compile 'org.springframework.boot:spring-boot-starter-amqp'
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter'
     // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
