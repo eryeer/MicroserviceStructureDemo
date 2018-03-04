@@ -1,11 +1,10 @@
 package com.wxbc.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wxbc.common.CommonUtil;
-import com.wxbc.mapper.UserInfoDao;
-import com.wxbc.pojo.UserInfo;
 import com.wxbc.exception.SqlGetValueException;
+import com.wxbc.feign.UserFeignClient;
+import com.wxbc.pojo.UserInfo;
 import com.wxbc.redis.RedisService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +15,13 @@ import java.util.UUID;
 @Service
 public class LoginService {
     @Autowired
-    private UserInfoDao userInfoDao;
+    private UserFeignClient userFeignClient;
+
     @Autowired
     private RedisService redisService;
 
-    public void login(UserInfo userInfo) throws SqlGetValueException, JsonProcessingException {
-        UserInfo userTableInfo = userInfoDao.queryUserWithName(userInfo.getName());
+    public String login(UserInfo userInfo) throws SqlGetValueException, JsonProcessingException {
+        UserInfo userTableInfo = userFeignClient.getUserInfoByName(userInfo.getName());
         if (userTableInfo == null) {
             throw new SqlGetValueException("用户不存在");
         }
@@ -33,6 +33,6 @@ public class LoginService {
         String loginToken = UUID.randomUUID().toString();
         redisService.hset("LOGIN_TOKEN-" + loginToken, "active", userValue);
         redisService.expire("LOGIN_TOKEN-" + loginToken, 300);
-        redisService.setex("USER_INFO-" + userInfo.getName(), userValue, 30000);
+        return loginToken;
     }
 }

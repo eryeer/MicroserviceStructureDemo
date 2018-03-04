@@ -12,7 +12,9 @@ eureka:
     #serviceUrl:
       #defaultZone: http://admin:admin@127.0.0.1:6868/eureka/
   server:
-    enable-self-preservation: true #开启自我保护模式
+    enable-self-preservation: false #开启自我保护模式
+  datacenter: cloud
+  environment: dev
 
 security:
   basic:

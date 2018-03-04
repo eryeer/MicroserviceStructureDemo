@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @Controller
-@RequestMapping("/rest/user")
+@RequestMapping("/user/rest")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
     @Autowired

@@ -1,28 +1,27 @@
 package com.wxbc;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.client.OkHttp3ClientHttpRequestFactory;
-import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.client.RestTemplate;
 
 @EnableDiscoveryClient //声明eureka客户端
-@SpringBootApplication
-@MapperScan(basePackages = {"com.wxbc"})
-@EnableTransactionManagement
 @EnableHystrix
 @EnableFeignClients
-public class IVApplication {
-
+@EnableZuulProxy
+@SpringBootApplication(exclude={DataSourceAutoConfiguration.class,HibernateJpaAutoConfiguration.class})
+public class GatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(IVApplication.class, args);
+        SpringApplication.run(GatewayApplication.class, args);
     }
 
     @Bean // 向Spring容器中定义RestTemplate对象

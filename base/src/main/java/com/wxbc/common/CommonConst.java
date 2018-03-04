@@ -240,4 +240,7 @@ public class CommonConst {
 
 
     public static long IDLE_CONNECTION_TIME = 60000;
+
+    ///microservice const
+    public static final String HYSTRIX_FALLBACK_STATUS= "hystrixFallback";
 }

@@ -67,7 +67,8 @@ public enum ReturnCode {
     DR_SHIFT_RANGE_VALUE_ERROR(5054),
     DR_FINAL_VALUE_SINGED_ERROR(5055),
     DR_FINAL_VALUE_ERROR(5056),
-    CONFIRMED_REG_SMS_BANNED(5057);
+    CONFIRMED_REG_SMS_BANNED(5057),
+    HYSTRIX_FALLBACK(6001);
 
 
     private int value;
@@ -210,6 +211,8 @@ public enum ReturnCode {
                 return "最终定价验证失败";
             case CONFIRMED_REG_SMS_BANNED:
                 return "规则已确认，不能发送注册码";
+            case HYSTRIX_FALLBACK:
+                return "熔断回滚";
             default:
                 return null;
         }
