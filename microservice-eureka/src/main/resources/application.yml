@@ -5,10 +5,10 @@ spring:
     name: microservice-eureka #指定服务名
 eureka:
   client:
-    registerWithEureka: false
-    fetchRegistry: false
+    registerWithEureka: false #是否将自己注册到Eureka Server
+    fetchRegistry: false #是否从Eureka Server获取注册信息
     serviceUrl:
-      defaultZone: http://admin:admin@127.0.0.1:6868/eureka/
+      defaultZone: http://admin:admin@127.0.0.1:6868/eureka/ #Eureka Server的地址
   server:
     enable-self-preservation: ${isSelfPreserve:false} #开启自我保护模式
   datacenter: cloud

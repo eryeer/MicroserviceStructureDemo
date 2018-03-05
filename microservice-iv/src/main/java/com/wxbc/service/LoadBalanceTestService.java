@@ -8,13 +8,15 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 
 @Service
-public class TestService {
+public class LoadBalanceTestService {
     @Autowired
     private LoadBalancerClient loadBalancerClient;
 
-    public TestService(){
+    public LoadBalanceTestService(){
 
     }
+    /*
+    //测试Ribbon组件的LoadBalance
     @PostConstruct
     public void test(){
         String serviceId = "microservice-account";
@@ -22,5 +24,5 @@ public class TestService {
             ServiceInstance serviceInstance = loadBalancerClient.choose(serviceId);
             System.out.println("第" + (i + 1) + "次：" + serviceInstance.getHost() + ": " + serviceInstance.getPort());
         }
-    }
+    }*/
 }
