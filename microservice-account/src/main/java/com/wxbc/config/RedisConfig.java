@@ -14,7 +14,6 @@ import redis.clients.jedis.ShardedJedisPool;
 
 
 @Configuration
-@PropertySource(value = "classpath:redis.properties")
 public class RedisConfig {
 
     @Value("${redis.maxTotal}")

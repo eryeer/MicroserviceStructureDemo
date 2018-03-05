@@ -3,19 +3,13 @@ package com.wxbc.service;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wxbc.common.CommonConst;
-import com.wxbc.exception.HystrixFallBackException;
 import com.wxbc.feign.UserFeignClient;
 import com.wxbc.mapper.IVInfoDao;
 import com.wxbc.pojo.IVInfo;
 import com.wxbc.pojo.UserInfo;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Service
 public class IVService {

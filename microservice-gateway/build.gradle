@@ -42,6 +42,7 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
     compile 'org.springframework.cloud:spring-cloud-starter-feign'
+    compile 'org.springframework.cloud:spring-cloud-starter-config'
 
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile 'org.springframework.boot:spring-boot-starter'

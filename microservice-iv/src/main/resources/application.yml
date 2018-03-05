@@ -3,16 +3,6 @@ server:
 spring:
   application:
     name: microservice-iv #指定服务名
-  rabbitmq:
-    host: 192.168.192.128
-    port: 6672
-    username: guest
-    password: guest
-  datasource:
-    url: jdbc:mysql://192.168.192.128:13306/iv?characterEncoding=utf-8
-    username: root
-    password: root
-
 eureka:
   client:
     registerWithEureka: true #是否将自己注册到Eureka服务中，默认为true
@@ -24,4 +14,4 @@ eureka:
     ip-address: 127.0.0.1 #指定IP地址
     instance-id: ${spring.application.name}:${server.port} #指定实例id
 
-hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 3000 #设置hystrix的超时开启保护时间 ms
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000 #设置hystrix的超时开启保护时间 ms

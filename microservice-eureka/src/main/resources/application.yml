@@ -1,21 +1,18 @@
 server:
   port: ${port:6868} #server port
-
 spring:
   application:
     name: microservice-eureka #指定服务名
-
 eureka:
   client:
     registerWithEureka: false
     fetchRegistry: false
-    #serviceUrl:
-      #defaultZone: http://admin:admin@127.0.0.1:6868/eureka/
+    serviceUrl:
+      defaultZone: http://admin:admin@127.0.0.1:6868/eureka/
   server:
-    enable-self-preservation: false #开启自我保护模式
+    enable-self-preservation: ${isSelfPreserve:false} #开启自我保护模式
   datacenter: cloud
   environment: dev
-
 security:
   basic:
     enable: true #开启基于HTTP basic的认证

@@ -11,11 +11,9 @@ zuul:
       serviceId: microservice-gateway
     microservice-account: #microservice-account这个路由名字是任意写的
       path: /microservice-account/** #配置请求URL的请求规则
-      sensitiveHeaders:
       serviceId: microservice-account #将/microservice-account/映射成serviceId对应的url，如http://localhost:8080
     microservice-iv:
       path: /microservice-iv/**
-      sensitiveHeaders:
       serviceId: microservice-iv
 eureka:
   client:
@@ -27,3 +25,5 @@ eureka:
     prefer-ip-address: true #将自己的ip地址注册到Eureka服务中
     ip-address: 127.0.0.1 #指定IP地址
     instance-id: ${spring.application.name}:${server.port} #指定实例id
+
+hystrix.command.default.execution.isolation.thread.timeoutInMilliseconds: 5000 #设置hystrix的超时开启保护时间 ms

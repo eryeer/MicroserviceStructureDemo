@@ -1,0 +1,13 @@
+server:
+  port: 6869 #服务端口
+
+spring:
+  application:
+    name: microservice-config #指定服务名
+  cloud:
+    config:
+      server:
+        git: #配置git仓库地址
+          uri: https://github.com/eryeer/microserviceDemo-config.git
+          username: eryeer
+          password: 84512780zc

@@ -59,12 +59,13 @@ public class UserLoginFilter extends BaseFilter {
             userInfo.setPassword(password);
             String loginToken = loginService.login(userInfo);
             CookieUtils.setCookie(request, response, "LOGIN_TOKEN", loginToken);
+            getRequestContext().setResponseBody("login success");
         } catch (Exception e) {
-            getRequestContext().setSendZuulResponse(false);
-            response.setContentType("text/html;charset=UTF-8");
-            getRequestContext().setResponseStatusCode(200);
             getRequestContext().setResponseBody(e.getMessage());
         }
+        getRequestContext().setSendZuulResponse(false);
+        response.setContentType("text/html;charset=UTF-8");
+        getRequestContext().setResponseStatusCode(200);
         return null;
     }
 
