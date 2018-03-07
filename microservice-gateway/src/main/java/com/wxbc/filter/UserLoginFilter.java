@@ -21,28 +21,24 @@ import java.io.InputStreamReader;
 public class UserLoginFilter extends BaseFilter {
     @Autowired
     LoginService loginService;
-
     @Override
     public String filterType() {
-        return "pre";
+        return "pre"; //使用前置过滤器
     }
-
     @Override
     public int filterOrder() {
         return 1;
     }
-
     @Override
     public boolean shouldFilter() {
         HttpServletRequest request = getRequest();
         String requestURI = request.getRequestURI();
-        if (requestURI.contains("/login")) {
+        if (requestURI.contains("/login")) { //拦截/login的url
             return true;
         } else {
             return false;
         }
     }
-
     @Override
     public Object run() {
         HttpServletRequest request = getRequest();
@@ -57,13 +53,13 @@ public class UserLoginFilter extends BaseFilter {
             UserInfo userInfo = new UserInfo();
             userInfo.setName(name);
             userInfo.setPassword(password);
-            String loginToken = loginService.login(userInfo);
+            String loginToken = loginService.login(userInfo);//登陆成功则将loginToken存入cookie，失败抛出异常
             CookieUtils.setCookie(request, response, "LOGIN_TOKEN", loginToken);
             getRequestContext().setResponseBody("login success");
         } catch (Exception e) {
             getRequestContext().setResponseBody(e.getMessage());
         }
-        getRequestContext().setSendZuulResponse(false);
+        getRequestContext().setSendZuulResponse(false);//将请求直接返回
         response.setContentType("text/html;charset=UTF-8");
         getRequestContext().setResponseStatusCode(200);
         return null;

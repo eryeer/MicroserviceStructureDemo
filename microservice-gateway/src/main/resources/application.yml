@@ -7,7 +7,7 @@ zuul:
   routes:
     microservice-gateway:
       path: /microservice-gateway/**
-      sensitiveHeaders:
+      sensitiveHeaders: #允许cookie、敏感词的传输
       serviceId: microservice-gateway
     microservice-account: #microservice-account这个路由名字是任意写的
       path: /microservice-account/** #配置请求URL的请求规则

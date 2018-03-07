@@ -7,6 +7,7 @@ import com.wxbc.config.JdbcConfigBean;
 import com.wxbc.pojo.UserInfo;
 import com.wxbc.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,10 +21,13 @@ public class UserController {
     private UserService userService;
     @Autowired
     private JdbcConfigBean jdbcConfigBean;
+    @Value("${server.port}")
+    private String port;
 
     @ResponseBody
     @RequestMapping(value = "/getUserInfo", produces = {CommonConst.PRODUCE}, method = RequestMethod.GET)
     public UserInfo getUserInfo(@RequestParam("name") String name) {
+        System.out.println("start to getUserInfo: " + port);
         UserInfo userInfo = userService.getUserInfo(name);
         return userInfo;
     }
@@ -31,7 +35,7 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/test", produces = {CommonConst.PRODUCE}, method = RequestMethod.GET)
-    public ResponseFormat test(){
+    public ResponseFormat test() {
         ResponseFormat responseFormat = new ResponseFormat(ReturnCode.READ_SUCCESS);
         ArrayList<String> strings = new ArrayList<>();
         strings.add(this.jdbcConfigBean.toString());

@@ -2,7 +2,7 @@ spring:
   application:
     name: microservice-account #指定服务名
 server:
-  port: 8182 #服务端口
+  port: 8181 #服务端口
 
 eureka:
   client:

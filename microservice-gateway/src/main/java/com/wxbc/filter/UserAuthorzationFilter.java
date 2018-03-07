@@ -29,7 +29,7 @@ public class UserAuthorzationFilter extends BaseFilter {
     public boolean shouldFilter() {
         HttpServletRequest request = this.getRequest();
         String requestURI = request.getRequestURI();
-        if (!requestURI.contains("/login")) {
+        if (!requestURI.contains("/login")) { //拦截除了url为/login的其他所有url的访问
             return true;
         } else {
             return false;
@@ -41,23 +41,23 @@ public class UserAuthorzationFilter extends BaseFilter {
         String login_token = CookieUtils.getCookieValue(getRequest(), "LOGIN_TOKEN");
         if (!StringUtils.isEmpty(login_token) ) {
             String userValue = redisService.hget("LOGIN_TOKEN-" + login_token, "active");
+            //redis中找不到该token的情形
             if (StringUtils.isEmpty(userValue)){
-                getRequestContext().setSendZuulResponse(false);
+                getRequestContext().setSendZuulResponse(false);//直接拒绝请求
                 HttpServletResponse response = getRequestContext().getResponse();
                 response.setContentType("text/html;charset=UTF-8");
                 CookieUtils.deleteCookie(getRequest(),response,"LOGIN_TOKEN");
                 getRequestContext().setResponseStatusCode(200);
                 getRequestContext().setResponseBody("错误的token");
             }
-            return null;
         } else {
+            //cookie中没有token的情形
             getRequestContext().setSendZuulResponse(false);
             HttpServletResponse response = getRequestContext().getResponse();
             response.setContentType("text/html;charset=UTF-8");
             getRequestContext().setResponseStatusCode(200);
-            getRequestContext().setResponseBody("登陆超时");
+            getRequestContext().setResponseBody("cookie中没有token");
         }
         return null;
-
     }
 }

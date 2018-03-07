@@ -17,8 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.wxbc"})
 @EnableTransactionManagement
-//@EnableHystrix
-//@EnableFeignClients
+@EnableHystrix
+@EnableFeignClients
 @PropertySource(value = {"classpath:redis.properties","classpath:jdbc.properties","classpath:rabbitmq.properties"}, ignoreResourceNotFound = true)
 public class IVApplication {
     public static void main(String[] args) {
@@ -26,7 +26,7 @@ public class IVApplication {
     }
 
     @Bean // 向Spring容器中定义RestTemplate对象
-    //@LoadBalanced //开启负载均衡
+    @LoadBalanced //开启负载均衡
     public RestTemplate restTemplate() {
 
         OkHttp3ClientHttpRequestFactory requestFactory = new OkHttp3ClientHttpRequestFactory();
