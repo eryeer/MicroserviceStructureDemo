@@ -2,19 +2,14 @@ package com.wxbc.common;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.wxbc.common.httpclient.HttpClient;
-import com.wxbc.exception.InvalidAccessException;
-import com.wxbc.servicebean.manager.UserKeyInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URLEncoder;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -74,19 +69,7 @@ public class CommonUtil {
         return mapper.readValue(responseBody, ResponseFormatWithPubKeyIndex.class);
     }
 
-    public static UserKeyInfo getUserKeyInfo(String signed) throws Exception {
-        logger.info("pubKeySigned=" +signed);
-        String url = AppPropReader.getRestUrl() + CommonConst.GetUserKeyWithSigned + URLEncoder.encode(signed,"UTF-8");
-        String responseBody = HttpClient.sendGet(url);
 
-        if (responseBody.isEmpty()) {
-            logger.error("public Key Signed不存在.");
-            throw new InvalidAccessException(CommonConst.INVALID_ACCESS);
-        }
-        ObjectMapper mapper = new ObjectMapper();
-        UserKeyInfo keyInfo = mapper.readValue(responseBody, UserKeyInfo.class);
-        return keyInfo;
-    }
 
     public static String Bean2String(Object info) throws JsonProcessingException {
         ObjectMapper mapper = new ObjectMapper();

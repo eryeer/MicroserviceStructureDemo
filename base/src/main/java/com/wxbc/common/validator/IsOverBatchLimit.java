@@ -1,7 +1,5 @@
 package com.wxbc.common.validator;
 
-import com.wxbc.servicebean.cou.CancelDFCBean;
-
 import javax.validation.Constraint;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

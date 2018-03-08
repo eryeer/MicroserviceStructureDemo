@@ -9,12 +9,9 @@ import com.wxbc.pojo.IVInfo;
 import com.wxbc.pojo.UserInfo;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
 
 @Service
 public class IVService {
@@ -34,7 +31,7 @@ public class IVService {
     public IVInfo getIV(String ivAddress) {
         IVInfo ivInfo = ivInfoDao.getIVWithIVAddress(ivAddress);
         String name = ivInfo.getName();
-        String serviceId = "microservice-account";
+//        String serviceId = "microservice-account";
 //        List<ServiceInstance> instances = discoveryClient.getInstances(serviceId);
 //        if(instances.isEmpty()){
 //            return null;

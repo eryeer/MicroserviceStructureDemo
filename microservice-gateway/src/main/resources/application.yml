@@ -4,6 +4,9 @@ spring:
   application:
     name: microservice-gateway #指定服务名
 zuul:
+  host: #防止转发超时
+    connect-timeout-millis: 10000
+    socket-timeout-millis: 50000
   routes:
     microservice-gateway:
       path: /microservice-gateway/**
