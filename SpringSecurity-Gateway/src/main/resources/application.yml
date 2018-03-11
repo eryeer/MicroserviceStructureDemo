@@ -1,0 +1,20 @@
+spring:
+  redis:
+    host: 192.168.192.128
+    port: 16379
+  session:
+    store-type: redis
+  datasource:
+    url: jdbc:mysql://192.168.192.128:13306/account?characterEncoding=utf-8
+    username: root
+    password: root
+
+server:
+  port: 8080
+  session:
+    timeout: 60
+zuul:
+  routes:
+    resource:
+      path: /resource/**
+      url: http://localhost:9000
