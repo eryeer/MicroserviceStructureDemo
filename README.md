@@ -13,4 +13,6 @@ https://springcloud.cc/spring-security-zhcn.html
 Spring Session 参考手册  
 https://docs.spring.io/spring-session/docs/current/reference/html5/  
 Spring Security and Angular 参考教程  
-https://spring.io/guides/tutorials/spring-security-and-angular-js/
+https://spring.io/guides/tutorials/spring-security-and-angular-js/  
+Spring AMQP 参考手册  
+https://docs.spring.io/spring-amqp/reference/htmlsingle/  
