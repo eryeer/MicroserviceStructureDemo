@@ -27,7 +27,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/getUserInfo", produces = {CommonConst.PRODUCE}, method = RequestMethod.GET)
     public UserInfo getUserInfo(@RequestParam("name") String name) {
-        //System.out.println("start to getUserInfo: " + port);
+        System.out.println("start to getUserInfo: " + port);
         UserInfo userInfo = userService.getUserInfo(name);
         return userInfo;
     }

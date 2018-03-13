@@ -11,8 +11,8 @@ eureka:
       defaultZone: http://admin:admin@127.0.0.1:6868/eureka/ #Eureka Server的地址
   server:
     enable-self-preservation: ${isSelfPreserve:false} #开启自我保护模式
-  datacenter: cloud
-  environment: dev
+  #datacenter:
+  #environment: devx
 security:
   basic:
     enable: true #开启基于HTTP basic的认证
