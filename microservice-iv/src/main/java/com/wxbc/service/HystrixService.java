@@ -3,6 +3,7 @@ package com.wxbc.service;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.wxbc.common.CommonConst;
 import com.wxbc.feign.UserFeignClient;
+import com.wxbc.pojo.BasePojoInfo;
 import com.wxbc.pojo.IVInfo;
 import com.wxbc.pojo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;

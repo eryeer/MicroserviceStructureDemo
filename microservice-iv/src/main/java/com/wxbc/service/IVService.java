@@ -6,6 +6,7 @@ import com.wxbc.exception.HystrixFallBackException;
 import com.wxbc.mapper.IVInfoDao;
 import com.wxbc.pojo.IVInfo;
 import com.wxbc.pojo.UserInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -43,7 +44,7 @@ public class IVService {
 //        UserInfo userInfo = restTemplate.getForObject("http://" + serviceId +
 //               "/user/rest/getUserInfo?name=" + name, UserInfo.class); //Ribbon开启负载均衡写法
         UserInfo userInfo = hystrixService.getUserInfoByName(name); //使用Feign方式调用account模块API
-        if (userInfo.getStatus().equals(CommonConst.HYSTRIX_FALLBACK_STATUS)){
+        if (StringUtils.equals(userInfo.getStatus(),CommonConst.HYSTRIX_FALLBACK_STATUS)){
             throw new HystrixFallBackException(userInfo.getDesc());
         }
         ivInfo.setUserInfo(userInfo);
