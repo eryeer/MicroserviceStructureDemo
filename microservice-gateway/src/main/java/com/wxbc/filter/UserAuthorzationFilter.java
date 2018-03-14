@@ -1,5 +1,6 @@
 package com.wxbc.filter;
 
+import com.netflix.zuul.context.RequestContext;
 import com.wxbc.redis.RedisService;
 import com.wxbc.util.CookieUtils;
 import org.apache.commons.lang3.StringUtils;

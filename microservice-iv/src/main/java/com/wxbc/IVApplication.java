@@ -17,8 +17,8 @@ import org.springframework.web.client.RestTemplate;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.wxbc"})
 @EnableTransactionManagement
-//@EnableHystrix
-//@EnableFeignClients
+@EnableHystrix
+@EnableFeignClients
 @PropertySource(value = {"classpath:redis.properties","classpath:jdbc.properties","classpath:rabbitmq.properties"}, ignoreResourceNotFound = true)
 public class IVApplication {
     public static void main(String[] args) {

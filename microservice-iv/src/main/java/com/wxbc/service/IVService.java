@@ -30,7 +30,7 @@ public class IVService {
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    //@HystrixCommand(fallbackMethod = "getIVFallback") // 进行容错处理
+    @HystrixCommand(fallbackMethod = "getIVFallback") // 进行容错处理
     public IVInfo getIV(String ivAddress) {
         IVInfo ivInfo = ivInfoDao.getIVWithIVAddress(ivAddress);
         String name = ivInfo.getName();
@@ -43,9 +43,9 @@ public class IVService {
 //        ServiceInstance serviceInstance = instances.get(0);
 //        String url = serviceInstance.getHost() + ":" + serviceInstance.getPort();
 //        UserInfo userInfo = this.restTemplate.getForObject("http://" + url + "/user/rest/getUserInfo?name=" + name, UserInfo.class);
-        UserInfo userInfo = restTemplate.getForObject("http://" + serviceId +
-               "/user/rest/getUserInfo?name=" + name, UserInfo.class); //Ribbon开启负载均衡写法
-//        UserInfo userInfo = userFeignClient.getUserInfoByName(name); //使用Feign方式调用account模块API
+//        UserInfo userInfo = restTemplate.getForObject("http://" + serviceId +
+//               "/user/rest/getUserInfo?name=" + name, UserInfo.class); //Ribbon开启负载均衡写法
+        UserInfo userInfo = userFeignClient.getUserInfoByName(name); //使用Feign方式调用account模块API
         ivInfo.setUserInfo(userInfo);
 
         rabbitTemplate.convertAndSend("messageExchange",
