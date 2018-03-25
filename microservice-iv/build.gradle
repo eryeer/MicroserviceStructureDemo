@@ -19,8 +19,8 @@ apply plugin: "io.spring.dependency-management"
 apply plugin: 'org.springframework.boot'
 apply plugin: 'idea'
 
-group 'com.wxbc.microservice'
-version '1.0-SNAPSHOT'
+//group 'com.wxbc.microservice'
+//version '1.0-SNAPSHOT'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -41,7 +41,9 @@ dependencies {
     compile 'org.springframework.cloud:spring-cloud-starter-eureka-server'
     compile 'org.springframework.cloud:spring-cloud-starter-hystrix'
     compile 'org.springframework.cloud:spring-cloud-starter-feign'
+    compile 'org.springframework.cloud:spring-cloud-starter-sleuth'
     compile 'org.springframework.cloud:spring-cloud-starter-config'
+    compile 'org.springframework.cloud:spring-cloud-sleuth-zipkin'
 
     compile 'org.springframework.boot:spring-boot-starter-amqp'
     compile 'org.springframework.boot:spring-boot-starter-web'

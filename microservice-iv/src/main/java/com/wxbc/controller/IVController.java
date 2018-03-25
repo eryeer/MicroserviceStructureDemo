@@ -8,6 +8,8 @@ import com.wxbc.pojo.BasePojoInfo;
 import com.wxbc.pojo.IVInfo;
 import com.wxbc.service.IVService;
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -19,12 +21,15 @@ import java.util.List;
 @RequestMapping("/iv")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class IVController {
+    protected Logger logger = LoggerFactory.getLogger(this.getClass().getName());
+
     @Autowired
     private IVService ivService;
 
     @ResponseBody
     @RequestMapping(value = "/getIV/{ivAddress}", produces = {CommonConst.PRODUCE}, method = RequestMethod.GET)
     public ResponseFormat getIV(@PathVariable("ivAddress") String ivAddress) {
+        logger.info("start to getIV");
         ResponseFormat response = new ResponseFormat(ReturnCode.READ_SUCCESS);
         try {
             IVInfo ivInfo = ivService.getIV(ivAddress);

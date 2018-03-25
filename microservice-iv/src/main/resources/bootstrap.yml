@@ -1,0 +1,3 @@
+spring:
+  application:
+    name: microservice-iv #指定服务名
