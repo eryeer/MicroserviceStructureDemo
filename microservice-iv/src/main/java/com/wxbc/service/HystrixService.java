@@ -9,7 +9,7 @@ import com.wxbc.pojo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service
+//@Service
 public class HystrixService {
     @Autowired
     private UserFeignClient userFeignClient;
