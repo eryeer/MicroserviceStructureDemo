@@ -6,6 +6,8 @@ import com.wxbc.common.ReturnCode;
 import com.wxbc.config.JdbcConfigBean;
 import com.wxbc.pojo.UserInfo;
 import com.wxbc.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 @RequestMapping("/user/rest")
 @CrossOrigin(origins = "*", maxAge = 3600)
 public class UserController {
+    protected Logger logger = LoggerFactory.getLogger(this.getClass().getName());
     @Autowired
     private UserService userService;
     @Autowired
@@ -27,7 +30,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/getUserInfo", produces = {CommonConst.PRODUCE}, method = RequestMethod.GET)
     public UserInfo getUserInfo(@RequestParam("name") String name) {
-        System.out.println("start to getUserInfo: " + port);
+        logger.info("start to getUserInfo: " + port);
         UserInfo userInfo = userService.getUserInfo(name);
         return userInfo;
     }

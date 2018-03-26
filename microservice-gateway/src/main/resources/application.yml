@@ -3,6 +3,10 @@ server:
 spring:
   application:
     name: microservice-gateway #指定服务名
+  sleuth:
+    sampler:
+      percentage: 1
+    enabled: true
 zuul:
   host: #防止转发超时
     connect-timeout-millis: 10000

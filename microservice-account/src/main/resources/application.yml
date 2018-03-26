@@ -1,6 +1,11 @@
 spring:
-  application:
-    name: microservice-account #指定服务名
+  zipkin:
+    base-url: http://localhost:9422
+  sleuth:
+    sampler:
+      percentage: 1
+  profiles:
+    active: production
 server:
   port: 8181 #服务端口
 
