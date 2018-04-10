@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value = "microservice-account")
+@FeignClient(value = "microservice-account",fallback = UserFeignClientHystrix.class)
 public interface UserFeignClient {
 
     @RequestMapping(value = "/user/rest/getUserInfo", method = RequestMethod.GET)

@@ -3,6 +3,7 @@ package com.wxbc.service;
 
 import com.wxbc.common.CommonConst;
 import com.wxbc.exception.HystrixFallBackException;
+import com.wxbc.feign.UserFeignClient;
 import com.wxbc.mapper.IVInfoDao;
 import com.wxbc.pojo.IVInfo;
 import com.wxbc.pojo.UserInfo;
@@ -25,8 +26,10 @@ public class IVService {
     private RestTemplate restTemplate;
     @Autowired
     private DiscoveryClient discoveryClient;
+
     @Autowired
-    private HystrixService hystrixService;
+    private UserFeignClient userFeignClient;
+
 
     @Transactional(rollbackFor = Exception.class)
     public IVInfo getIV(String ivAddress) throws HystrixFallBackException {
@@ -43,7 +46,12 @@ public class IVService {
 //        UserInfo userInfo = this.restTemplate.getForObject("http://" + url + "/user/rest/getUserInfo?name=" + name, UserInfo.class);
 //        UserInfo userInfo = restTemplate.getForObject("http://" + serviceId +
 //               "/user/rest/getUserInfo?name=" + name, UserInfo.class); //Ribbon开启负载均衡写法
-        UserInfo userInfo = hystrixService.getUserInfoByName(name); //使用Feign方式调用account模块API
+        IVInfo ivInfo1 = new IVInfo();
+        ivInfo1.setIvAddress("bbc");
+        ivInfo1.setName("Tom");
+        ivInfo1.setIvDesc("hdfghdfg");
+        ivInfoDao.insertIV(ivInfo1);
+        UserInfo userInfo = userFeignClient.getUserInfoByName(name); //使用Feign方式调用account模块API
         if (StringUtils.equals(userInfo.getStatus(),CommonConst.HYSTRIX_FALLBACK_STATUS)){
             throw new HystrixFallBackException(userInfo.getDesc());
         }
