@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @SpringBootApplication
 @MapperScan(basePackages = {"com.wxbc"})
 @EnableTransactionManagement
-@PropertySource(value = {"classpath:conf.properties"})
+//@PropertySource(value = {"classpath:conf.properties"})
 public class AccountApplication {
     public static void main(String[] args) {
         SpringApplication.run(AccountApplication.class, args);

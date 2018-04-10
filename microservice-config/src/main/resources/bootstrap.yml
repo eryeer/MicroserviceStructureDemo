@@ -1,0 +1,7 @@
+encrypt:
+  key: mysecret #使用对称加密
+#  key-store: #使用非对称加密
+#    location: server.jks
+#    password: letmein
+#    alias: mytestkey
+#    secret: changeme

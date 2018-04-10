@@ -3,7 +3,6 @@ buildscript {
         springBootVersion = '1.5.9.RELEASE'
     }
     repositories {
-        mavenLocal()
         mavenCentral()
     }
     dependencies {
@@ -11,7 +10,6 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
     }
 }
-
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
@@ -32,7 +30,7 @@ repositories {
 
 dependencyManagement {
     imports {
-        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR3'
+        mavenBom 'org.springframework.cloud:spring-cloud-dependencies:Dalston.SR5'
     }
 }
 

@@ -1,17 +1,14 @@
 spring:
-  application:
-    name: microservice-account #指定服务名
-#spring:
-#  cloud:
-#    config:
-#      name: microserviceAccount #对应的配置服务中的应用名称
-#      #uri: http://127.0.0.1:6869/
-#      profile: dev #对应配置服务中的{profile}
-#      label: master #对应的分支
-#      discovery:
-#        enabled: true #启用发现服务功能
-#        service-id: microservice-config #指定服务名称
-#eureka:
-#  client:
-#    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
-#      defaultZone: http://admin:admin@127.0.0.1:6868/eureka/
+  cloud:
+    config:
+      name: microserviceAccount #对应的配置服务中的应用名称
+      #uri: http://127.0.0.1:6869/
+      profile: dev #对应配置服务中的{profile}
+      label: master #对应的分支
+      discovery:
+        enabled: true #启用发现服务功能
+        service-id: microservice-config #指定服务名称
+eureka:
+  client:
+    serviceUrl: #Eureka客户端与Eureka服务端进行交互的地址
+      defaultZone: http://admin:admin@127.0.0.1:6868/eureka/

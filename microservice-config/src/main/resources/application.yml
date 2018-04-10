@@ -11,7 +11,10 @@ spring:
           uri: https://github.com/eryeer/microserviceDemo-config.git
           username: eryeer
           password: 84512780zc
-          search-paths: folder1 #搜索指定子文件夹
+          search-paths: folder1
+        encrypt:
+          enabled: true
+
 eureka:
   client:
     registerWithEureka: true #是否将自己注册到Eureka服务中，默认为true
